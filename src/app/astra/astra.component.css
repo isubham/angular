@@ -2,6 +2,9 @@
     background-color: #111111;
     color: #efefef;
 }
+.wrapper{
+    width: 80%;
+}
 mat-card{
     box-shadow: none !important;
     border: none;
