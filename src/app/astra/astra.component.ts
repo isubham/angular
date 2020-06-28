@@ -9,13 +9,14 @@ import { ApiService } from '../api.service';
 export class AstraComponent implements OnInit {
 
   apiService  : ApiService;
-  features : object;
-  socials : object;
-  uiData : object;
+  features : any;
+  socials : any;
+  uiData : any;
 
   constructor(apiService : ApiService) 
   {
     this.apiService = apiService;
+    this.uiData
   }
 
   ngOnInit() 

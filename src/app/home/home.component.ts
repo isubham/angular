@@ -8,9 +8,9 @@ import { ApiService } from '../api.service';
 })
 export class HomeComponent implements OnInit {
 
-  socials : object;
+  socials : any;
   apiService : ApiService;
-  uiData : object;
+  uiData : any;
 
   constructor(apiService : ApiService) 
   {
