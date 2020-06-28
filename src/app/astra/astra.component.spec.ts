@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminTasksComponent } from './admin-tasks.component';
+import { AstraComponent } from './astra.component';
 
-describe('AdminTasksComponent', () => {
-  let component: AdminTasksComponent;
-  let fixture: ComponentFixture<AdminTasksComponent>;
+describe('AstraComponent', () => {
+  let component: AstraComponent;
+  let fixture: ComponentFixture<AstraComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminTasksComponent ]
+      declarations: [ AstraComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminTasksComponent);
+    fixture = TestBed.createComponent(AstraComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

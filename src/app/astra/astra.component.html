@@ -1,34 +1,63 @@
-<mat-grid-list cols="2" rowHeight="128px" >
+<mat-grid-list cols="2" rowHeight="128px">
 
   <!-- landing card with title, description and google play link -->
   <mat-grid-tile class="black" [colspan]="2" [rowspan]="5">
-    <mat-card class="black" >
+    <mat-card class="black">
       <mat-card-header style="justify-content: center;">
+
         <mat-card-title>
-          <div>
+          <div style="text-align: center;">
             <h1>{{uiData.landing.title}}</h1>
           </div>
+          <img [src]="uiData.landing.image" width="600px; height: auto;" />
         </mat-card-title>
       </mat-card-header>
       <mat-card-content class="dashboard-card-content">
+
         <div style="text-align: center;">
           {{uiData.landing.description}}
         </div>
       </mat-card-content>
 
+      <mat-card-footer style="text-align: center;">
+        <a [attr.href]="uiData.landing.playStoreLink"><img [src]="uiData.landing.playStoreImage" /></a>
+      </mat-card-footer>
     </mat-card>
   </mat-grid-tile>
 
-  <mat-grid-tile [colspan]="2" [rowspan]="1" class="wrapper">
+  <!-- features section -->
+  <mat-grid-tile [colspan]="2" [rowspan]="1" >
+    <mat-card>
+      <h1>Features</h1>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile *ngFor="let feature of features"  [colspan]="feature.col" [rowspan]="feature.row">
+
+    <mat-card *ngIf="feature.type == 'desc'" >
+      <div>
+        <h1>{{feature.title}}</h1>
+      </div>
+
+      <p>
+        {{feature.description}}
+      </p>
+    </mat-card>
+
+    <mat-card *ngIf="feature.type == 'image'">
+      <img [src]="feature.image" />
+    </mat-card>
+
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="2" [rowspan]="1" >
     <mat-card>
       <h1>Sales and Enquiry</h1>
     </mat-card>
   </mat-grid-tile>
 
-
-
   <!-- contact section -->
-  <mat-grid-tile [colspan]="2" [rowspan]="2" class="wrapper">
+  <mat-grid-tile [colspan]="2" [rowspan]="2" >
     <mat-card>
 
       <!--
@@ -57,15 +86,15 @@
     </mat-card>
   </mat-grid-tile>
 
-
   <!-- footer -->
   <mat-grid-tile class="black" [colspan]="2" [rowspan]="2">
 
     <div class="wrapper">
 
-      <mat-card class="black" >
-        <img *ngFor="let social of socials" [src]="social.img" alt="" width="32px" height="32px"
-          style="padding: 0.4em;">
+      <mat-card class="black">
+        <a *ngFor="let social of socials" [attr.href]="social.url">
+          <img [src]="social.img" alt="" width="32px" height="32px" style="padding: 0.4em;">
+        </a>
         <p>
           Terms of Use | Privacy Policy
         </p>

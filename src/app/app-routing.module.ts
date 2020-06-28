@@ -1,17 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { AstraComponent } from './astra/astra.component';
 
 const routes: Routes = [
   {
-    path: 'projects',
-    loadChildren: './admin/admin.module#AdminModule'
+    path : 'astra',
+    component: AstraComponent
   },
   {
-    path: 'blog',
-    loadChildren: './staff/staff.module#StaffModule'
-  },
- {
     path: '',
     component : HomeComponent
   }

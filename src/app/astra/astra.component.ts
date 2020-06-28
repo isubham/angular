@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-astra',
+  templateUrl: './astra.component.html',
+  styleUrls: ['./astra.component.css']  
 })
-export class HomeComponent implements OnInit {
+export class AstraComponent implements OnInit {
 
+  apiService  : ApiService;
+  features : object;
   socials : object;
-  apiService : ApiService;
   uiData : object;
 
   constructor(apiService : ApiService) 
@@ -19,10 +20,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() 
   {
+    this.features = this.apiService.getFeatures();
     this.socials = this.apiService.getSocials();
-    this.uiData = this.apiService.getHomeUiData();
+    this.uiData = this.apiService.getAstraUiData();
   }
-
-
 
 }
