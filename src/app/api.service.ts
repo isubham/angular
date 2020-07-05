@@ -116,5 +116,11 @@ export class ApiService {
     };
   }
 
+  getPrivacyPolicy() {
+    return {
+      "/astra/privacy-policy" : "../../assets/astra-pp.pdf"
+    }
+  }
+
 
 }

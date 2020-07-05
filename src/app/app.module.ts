@@ -8,13 +8,15 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCardModule, MatGridListModule, MatInputModule, MatCheckboxModule } from '@angular/material';
 import { HomeComponent } from './home/home.component';
 import { AstraComponent } from './astra/astra.component';
+import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppNavComponent,
     HomeComponent,
-    AstraComponent
+    AstraComponent,
+    PdfViewerComponent
   ],
   imports: [
     BrowserModule,
