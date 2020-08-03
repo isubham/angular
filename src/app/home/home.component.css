@@ -12,3 +12,64 @@ mat-card{
     box-shadow: none !important;
     border: none;
 }
+.user-table{
+    width:100%;
+}
+.form-overlay{
+    background-color: rgba(0, 0, 0, 0.5);
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    position: absolute;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width: 100%;
+    z-index: 1000;
+}
+
+.form-wrapper{
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 2em;
+    border:1px solid #efefef; width:25%;
+    margin: 1em;
+    background: white;
+}
+
+.form-wrapper img{
+    padding-top: 2em;
+}
+
+.form-wrapper {
+    text-align: right;
+
+}
+
+
+.user-component{
+    text-align: left;
+display:flex; 
+flex-direction: column;
+}
+.light-border{
+    border: 1px solid #efefef;
+    padding: 1em;
+}
+
+.padded {
+    padding:0.8em;
+    border-radius: 0.2em;
+}
+
+.spaced{
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.orange-button{
+    background-color: orange;
+    color: white;
+    border: 1px solid orange;
+}

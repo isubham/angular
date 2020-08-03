@@ -1,0 +1,20 @@
+<!-- edit/add user -->
+  <div class="form-overlay" *ngIf="showUserDialog">
+
+    <div class="form-wrapper">
+      <img src="../../assets/ico_close.svg" (click)="hideForm()"/>
+      <div class="user-component">
+        <h1>Add User</h1>
+        <input type="text" [(ngModel)]="name" class="full-width padded light-border" placeholder="name" /><br><br>
+        <input type="email" [(ngModel)]="email" class="full-width padded light-border" placeholder="name" /><br><br>
+        <div>
+        <input type="radio"  name="RoleType"  /> Admin
+        <input type="radio" name="RoleType" />  Customer Executive<br><br>
+        </div>
+        <input type="number" [(ngModel)]="mobile" class="full-width padded light-border" name="mobile" placeholder="mobile (optional)"/><br><br>
+
+        <button type="button" class="full-width padded orange-button" (click)="saveUser">Add User</button>
+      </div>
+    </div>
+
+  </div>

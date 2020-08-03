@@ -3,19 +3,19 @@
    top: 0;
     position: sticky;
     z-index: 1;
-    background-color: inherit;
 }
 
 mat-toolbar {
-  height: 2em;
-  justify-content: center;
+  height: 3em;
+  background-color: whited;
 }
 
 .wrapper {
-  width: 80% !important;
 }
 
-.black{
-    background-color: black;
-    color: #efefef;
+.nav-text {
+  font-size: 2em;
+  font-style: normal;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
 }

@@ -5,18 +5,24 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppNavComponent } from './app-nav/app-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCardModule, MatGridListModule, MatInputModule, MatCheckboxModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, 
+  MatListModule, MatCardModule, MatGridListModule, MatInputModule, MatCheckboxModule, MatTableModule, MatDatepicker} from '@angular/material';
 import { HomeComponent } from './home/home.component';
-import { AstraComponent } from './astra/astra.component';
-import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
+import { HttpClientModule } from '@angular/common/http';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import { UpsertUserComponent } from './upsert-user/upsert-user.component';
+import {MatRadioModule} from '@angular/material/radio'
+import { FormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AppNavComponent,
     HomeComponent,
-    AstraComponent,
-    PdfViewerComponent
+    UpsertUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +38,12 @@ import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
     MatGridListModule,
     MatInputModule,
     MatCheckboxModule,
+    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatRadioModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

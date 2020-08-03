@@ -1,81 +1,109 @@
-<mat-grid-list cols="2" rowHeight="128px" >
+<!-- navigation with to filter, search  and add -->
+<div>
+  <mat-toolbar style="background-color: white; border-bottom: 1px solid #efefef;">
+    <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+      <a mat-button routerLink="/" routerLinkActive="true"> <img class="padded" src="../../assets/ico_users.svg" />
+        <span class="nav-text mat-h1">Users</span></a>
 
-  <!-- landing card with title, description and google play link -->
-  <mat-grid-tile class="black" [colspan]="2" [rowspan]="5">
-    <mat-card class="black" >
-      <mat-card-header style="justify-content: center;">
-        <mat-card-title>
-          <div>
-            <h1>{{uiData.landing.title}}</h1>
-          </div>
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content class="dashboard-card-content">
-        <div style="text-align: center;">
-          {{uiData.landing.description}}
-        </div>
-      </mat-card-content>
-
-    </mat-card>
-  </mat-grid-tile>
-
-  <mat-grid-tile [colspan]="2" [rowspan]="1" class="wrapper">
-    <mat-card>
-      <h1>Sales and Enquiry</h1>
-    </mat-card>
-  </mat-grid-tile>
-
-
-
-  <!-- contact section -->
-  <mat-grid-tile [colspan]="2" [rowspan]="2" class="wrapper">
-    <mat-card>
-
-      <!--
-      <form class="">
-        <mat-form-field class="example-full-width">
-          <mat-label>Email</mat-label>
-          <input matInput placeholder="" value="">
-        </mat-form-field>
-        <br />
-        <mat-form-field class="example-full-width">
-          <mat-label>How can we help you</mat-label>
-          <textarea matInput placeholder=""></textarea>
-        </mat-form-field>
-        <br>
-        <mat-checkbox class="example-margin">
-          By Submitting this form, I Agree to Pitavya Privacy Policy
-        </mat-checkbox>
-        <br>
-        <br>
-        <button mat-flat-button mat-button color="primary">Submit</button>
-      </form>
-      -->
-
-      <img src="../../assets/005-whatsapp.svg" />8409829198
-
-    </mat-card>
-  </mat-grid-tile>
-
-
-  <!-- footer -->
-  <mat-grid-tile class="black" [colspan]="2" [rowspan]="2">
-
-    <div class="wrapper">
-
-      <mat-card class="black" >
-        <img *ngFor="let social of socials" [src]="social.img" alt="" width="32px" height="32px"
-          style="padding: 0.4em;">
-        <p>
-          Terms of Use | Privacy Policy
-        </p>
-        <p>
-          Copyright (c) 2020 Pitavya Pvt. Ltd.
-        </p>
-      </mat-card>
+      <div>
+        <input (keyup)="applyFilter($event)" class="padded light-border spaced" placeholder="Search" #input>
+        <img src="../../assets/ico_search.svg" style="position: relative; left: -2em; top:0.3em" />
+        <button class="orange-button" mat-button (click)="showForm()"><img src="../../assets/ico_add.svg" /> Add
+          User</button>
+      </div>
     </div>
+  </mat-toolbar>
+</div>
 
-  </mat-grid-tile>
+
+<!-- datatable with sort and edit -->
+<mat-card>
+
+  <table mat-table [dataSource]="dataSource" matSort class="user-table">
+    <ng-container matColumnDef="Id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell *matCellDef="let row"> {{row.Id}} </td>
+    </ng-container>
 
 
-</mat-grid-list>
+
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <td mat-cell *matCellDef="let row"> {{row.Name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+      <td mat-cell *matCellDef="let row"> {{row.Email}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="RoleType">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Role Type </th>
+      <td mat-cell *matCellDef="let row"> {{row.RoleType}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="_Status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+      <td mat-cell *matCellDef="let row">
+        <span *ngIf="row._Status == 1"><img src="../../assets/ico_active.svg" /> Active</span>
+        <span *ngIf="row._Status == 2"><img src="../../assets/ico_pending.svg" /> Pending</span>
+        <span *ngIf="row._Status == 3"><img src="../../assets/ico_inactive.svg" /> Inactive</span>
+
+        <span style="float: right"><img src="../../assets/ico_edit.svg" (click)="showEditDialog(row)" /></span>
+      </td>
+
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+
+</mat-card>
+
+
+<!-- edit/add user -->
+<div class="form-overlay" *ngIf="showUserDialog">
+
+  <div class="form-wrapper">
+    <img src="../../assets/ico_close.svg" (click)="hideForm()" />
+    <div class="user-component">
+      <h1 class="mat-h1">Add User</h1>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" type="text" [(ngModel)]="user.Name" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" type="email" [(ngModel)]="user.Email" required>
+      </mat-form-field>
+
+
+
+      <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+        [(ngModel)]="user.RoleType">
+        <mat-radio-button class="example-radio-button" *ngFor="let roleType of roleTypes" [value]="roleType" required>
+          {{roleType}}
+        </mat-radio-button>
+      </mat-radio-group>
+      <br>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Mobile (optional)</mat-label>
+        <input matInput placeholder="Mobile (optional)" type="tel">
+      </mat-form-field>
+
+      <button mat-button type="button" class="full-width padded orange-button" (click)="saveUser()">
+        {{user.Id == 0 ? "Add User" : "Update User"}}</button>
+
+      <button *ngIf="user.Id != 0" mat-button type="button" class="full-width padded " color="warn"
+        (click)="deleteUser()">
+        Delete User</button>
+    </div>
+  </div>
+
+</div>
